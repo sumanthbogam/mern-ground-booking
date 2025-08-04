@@ -9,7 +9,7 @@ const AddGround = () => {
         location:"",
         pricePerHour:"",
         description:"",
-        img:null,
+        image:null,
     })
 
     const handleChange=(e)=>{
@@ -25,15 +25,15 @@ const AddGround = () => {
 
     }
     const handleSubmit=(e)=>{
-        e.printDefault();
+        e.preventDefault();
 
         const fd=new FormData();
      for(let key in groundData){
         fd.append(key,groundData[key]);
      }
-     try{const token=localStorage.get(token);
+     try{const token=localStorage.getItem("token");
 
-     const res=Axios.post("/admin/addGround",fd,{
+     const res= Axios.post("/admin/addGround",fd,{
         headers:{
             authorization:`Bearer ${token}`
         }

@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit=async (e)=>{
     e.preventDefault();
     try{
-      const res=await Axios.post("/admin/login",{
+      const res=await Axios.post("/login",{
       email,password
     });
     alert(res.data.msg);
