@@ -8,21 +8,22 @@ import AdminLogin from './admin/AdminLogin.jsx';
 import AddGround from './admin/AddGround.jsx';
 import Home from "./pages/Home.jsx";
 import Booking from './pages/Booking.jsx';
+import ProtectedRoute from './api/Protectedroute.jsx';
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
       <Routes>
-        <Route  path="/" element={<Dashboard/>}/>
-        <Route path="Home" element={<Home/>}/>
+        <Route  path="/" element={<Dashboard />}/>
+        <Route path="/Home" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
         <Route  path="/login" element={<Login/>}/>
-        <Route  path="/Booking/:id" element={<Booking/>}/>
+        <Route  path="/Booking/:id" element={<ProtectedRoute><Booking /></ProtectedRoute>}/>
 
         <Route path="/register" element={<Regstr/>}/>
         <Route path="/admin/register" element={<AdminRegister/>}/>
         <Route path="/admin/login" element={<AdminLogin/>}/>
-        <Route path="/admin/addGround" element={<AddGround/>}/>
+        <Route path="/admin/addGround" element={<ProtectedRoute><AddGround/></ProtectedRoute>}/>
 
       </Routes>
       

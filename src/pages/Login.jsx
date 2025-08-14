@@ -18,13 +18,20 @@ const Login = () => {
     localStorage.setItem("token",res.data.token);
     localStorage.setItem("userid",res.data.userId);
     console.log(res.data.userId);
-    navigate("/Home")
+    navigate("/Home",{ replace: true });
   }
 
   catch(err){
     console.error(err)
        alert(err.response?.data?.msg||"enter correct details");
   }}
+
+//   useEffect(() => {
+//   const token = localStorage.getItem("token");
+//   if (token) {
+//     navigate("/home", { replace: true });
+//   }
+// }, []);
 
 
  

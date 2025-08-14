@@ -7,11 +7,19 @@ import Axios from "../api/axios";
 
 
 const Dashboard = () => {
+  const navigate=useNavigate();
   console.log("Dashboard component rendered");
   
 
 
   const [grounds,setgrounds]=useState([]);
+
+  const token = localStorage.getItem("token");
+
+  if(token){
+    navigate('/Home');
+
+  }
 
   
 
@@ -33,7 +41,7 @@ const Dashboard = () => {
 
 
   
-    const navigate=useNavigate();
+    
   return (
     <div className='min-h-screen bg-yellow-100'>
         <header className="flex items-center justify-between p-4 bg-blue-100 shadow relative">
