@@ -1,17 +1,38 @@
 import React from 'react'
+import {useState,useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import GroundCard from '../components/GroundCard';
 import AdminRegister from '../admin/AdminRegister';
+import Axios from "../api/axios";
 
 
 const Dashboard = () => {
+  console.log("Dashboard component rendered");
+  
 
-  const grounds = [
-  { id: 1, name: "Sky Turf", img: "https://via.placeholder.com/300x200" },
-  { id: 2, name: "Green Pitch", img: "https://via.placeholder.com/300x200" },
-  { id: 3, name: "Royal Arena", img: "https://via.placeholder.com/300x200" },
-];
 
+  const [grounds,setgrounds]=useState([]);
+
+  
+
+  useEffect(() => {
+    
+  const fetchGrounds = async () => {
+    try {
+      console.log("called");
+      const result = await Axios.get("/user/getAll"); 
+      console.log(result.data.grounds);
+      setgrounds(result.data.grounds);
+    } catch (err) {
+      console.error("Error fetching grounds:", err);
+    }
+  };
+
+  fetchGrounds(); 
+}, []);
+
+
+  
     const navigate=useNavigate();
   return (
     <div className='min-h-screen bg-yellow-100'>
@@ -49,7 +70,7 @@ const Dashboard = () => {
 
         {grounds.map((ground)=>
           (
-            <GroundCard key={ground.id} id={ground.id} name={ground.name} img={ground.img}/>
+            <GroundCard key={ground._id} id={ground._id} name={ground.name} img={ground.image}/>
           )
         )}
 

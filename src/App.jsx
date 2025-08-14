@@ -6,6 +6,8 @@ import Login from './pages/Login.jsx';
 import AdminRegister from './admin/AdminRegister.jsx';
 import AdminLogin from './admin/AdminLogin.jsx';
 import AddGround from './admin/AddGround.jsx';
+import Home from "./pages/Home.jsx";
+import Booking from './pages/Booking.jsx';
 
 const App = () => {
   return (
@@ -13,7 +15,10 @@ const App = () => {
       <BrowserRouter>
       <Routes>
         <Route  path="/" element={<Dashboard/>}/>
+        <Route path="Home" element={<Home/>}/>
         <Route  path="/login" element={<Login/>}/>
+        <Route  path="/Booking/:id" element={<Booking/>}/>
+
         <Route path="/register" element={<Regstr/>}/>
         <Route path="/admin/register" element={<AdminRegister/>}/>
         <Route path="/admin/login" element={<AdminLogin/>}/>

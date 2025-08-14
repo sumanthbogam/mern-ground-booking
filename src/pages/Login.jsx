@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import Axios from '../api/axios';
+import Home from "./Home";
 
 const Login = () => {
   const [email,setEmail]=useState("")
@@ -10,12 +11,14 @@ const Login = () => {
   const handleSubmit=async (e)=>{
     e.preventDefault();
     try{
-      const res=await Axios.post("/login",{
+      const res=await Axios.post("/user/login",{
       email,password
     });
     alert(res.data.msg);
-    localStorage.setItem("token",res.data.token)
-    navigate("/home")
+    localStorage.setItem("token",res.data.token);
+    localStorage.setItem("userid",res.data.userId);
+    console.log(res.data.userId);
+    navigate("/Home")
   }
 
   catch(err){

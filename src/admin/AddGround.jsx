@@ -18,13 +18,13 @@ const AddGround = () => {
         
 
     }
-    const handleImageChange=(e)=>{
+    const handleImageChange= (e)=>{
         setGroundData((prev)=>({...prev,
             image:e.target.files[0]
         }))
 
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async (e)=>{
         e.preventDefault();
 
         const fd=new FormData();
@@ -33,14 +33,14 @@ const AddGround = () => {
      }
      try{const token=localStorage.getItem("token");
 
-     const res= Axios.post("/admin/addGround",fd,{
+     const res=await Axios.post("/admin/addGround",fd,{
         headers:{
             authorization:`Bearer ${token}`
         }
      }
     
     )
-    alert(res.data.msg||"ground added successfully")}
+        alert(res.data.msg||"ground added successfully")}
     catch(err){
         console.error(err);
         alert(err.response?.data?.msg||"error ground not added")}
