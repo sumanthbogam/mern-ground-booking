@@ -1,133 +1,168 @@
-import React from 'react'
-import { useState } from 'react'
-import Axios from '../api/axios'
+import React, { useState } from "react";
+import Axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const AddGround = () => {
+  const [groundData, setGroundData] = useState({
+    name: "",
+    location: "",
+    pricePerHour: "",
+    description: "",
+    image: null,
+  });
 
-    const [groundData,setGroundData]=useState({
-        name:"",
-        location:"",
-        pricePerHour:"",
-        description:"",
-        image:null,
-    })
+  const navigate = useNavigate();
 
-    const handleChange=(e)=>{
-        const {name,value}=e.target;
-        setGroundData((prev)=>({...prev,[name]:value}))
-        
+  const handleMyGrounds = () => {
+    navigate("/admin/allGrounds");
+  };
 
-    }
-    const handleImageChange= (e)=>{
-        setGroundData((prev)=>({...prev,
-            image:e.target.files[0]
-        }))
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    navigate("/"); 
+  };
 
-    }
-    const handleSubmit=async (e)=>{
-        e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setGroundData((prev) => ({ ...prev, [name]: value }));
+  };
 
-        const fd=new FormData();
-     for(let key in groundData){
-        fd.append(key,groundData[key]);
-     }
-     try{const token=localStorage.getItem("token");
+  const handleImageChange = (e) => {
+    setGroundData((prev) => ({
+      ...prev,
+      image: e.target.files[0],
+    }));
+  };
 
-     const res=await Axios.post("/admin/addGround",fd,{
-        headers:{
-            authorization:`Bearer ${token}`
-        }
-     }
-    
-    )
-        alert(res.data.msg||"ground added successfully")}
-    catch(err){
-        console.error(err);
-        alert(err.response?.data?.msg||"error ground not added")}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    const fd = new FormData();
+    for (let key in groundData) {
+      fd.append(key, groundData[key]);
     }
 
+    try {
+      const token = localStorage.getItem("token");
 
+      const res = await Axios.post("/admin/addGround", fd, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
 
-
-
-    
-
-
-
-
+      alert(res.data.msg || "Ground added successfully");
+      navigate("/admin/allGrounds");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.msg || "Error: ground not added");
+    }
+  };
 
   return (
-    <div className='min-h-screen flex justify-center items-center bg-yellow-200'>
-        <div className='bg-white border rounded-lg shadow-xl w-full max-w-lg'>
-            <h1 className='text-center text-xl px-3 py-3 mb-6'>Add Ground</h1>
-
-          <form className="space-y-4" onSubmit={handleSubmit} encType="multipart/form-data">
-                <div>
-                    <label className='block mb-1 ml-3 font-medium'>Ground Name</label>
-                    <input type='text' name='name' placeholder='enter Ground Name' value={groundData.name} onChange={handleChange} className='ml-3 border rounded w-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-200' required/>
-                </div>
-                 <div>
-            <label className="ml-3 block mb-1 font-medium">Location (Google Maps link or name)</label>
-            <input
-              type="text"
-              name="location"
-              value={groundData.location}
-              onChange={handleChange}
-              className="ml-3 border rounded w-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-              required
-            />
-            <p className="ml-3 text-sm text-gray-500 mt-1">Paste Google Maps location link or type manually</p>
-          </div>
-          <div>
-            <label className="ml-3 block mb-1 font-medium">Price Per Hour</label>
-            <input
-              type="number"
-              name="pricePerHour"
-              value={groundData.pricePerHour}
-              onChange={handleChange}
-              className=" ml-3 border rounded w-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="ml-3 block mb-1 font-medium">Description</label>
-            <textarea
-              name="description"
-              value={groundData.description}
-              onChange={handleChange}
-              className="ml-3 border rounded w-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-              rows="3"
-            ></textarea>
-          </div>
-
-          <div>
-            <label className="ml-3 block mb-1 font-medium">Upload Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="ml-3 border rounded w-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-            />
-          </div>
-
+    <div className="min-h-screen bg-yellow-200">
+      <header className="flex justify-between items-center bg-white shadow-md px-6 py-4">
+        <h1 className="text-xl font-bold text-gray-700">🏏 Add Ground</h1>
+        <div className="flex gap-4">
           <button
-            type="submit"
-            className="ml-3 w-md bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mb-2 cursor-pointer"
+            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition cursor-pointer"
+            onClick={handleMyGrounds}
           >
-            Submit
+            My Grounds
           </button>
-
-
-            </form>
-
-
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition cursor-pointer"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
-      
+      </header>
+      <div className="flex justify-center items-center py-8">
+        <div className="bg-white border rounded-lg shadow-xl w-full max-w-lg p-6">
+          <h2 className="text-center text-lg font-semibold mb-6">
+            Add Ground Details
+          </h2>
+
+          <form
+            className="space-y-4"
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
+            <div>
+              <label className="block mb-1 font-medium">Ground Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter ground name"
+                value={groundData.name}
+                onChange={handleChange}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">
+                Location (Google Maps link or name)
+              </label>
+              <input
+                type="text"
+                name="location"
+                value={groundData.location}
+                onChange={handleChange}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                required
+              />
+              <p className="text-sm text-gray-500 mt-1">
+                Paste Google Maps link or type manually
+              </p>
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">Price Per Hour</label>
+              <input
+                type="number"
+                name="pricePerHour"
+                value={groundData.pricePerHour}
+                onChange={handleChange}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">Description</label>
+              <textarea
+                name="description"
+                value={groundData.description}
+                onChange={handleChange}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">Upload Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition cursor-pointer"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-
-export default AddGround
+export default AddGround;

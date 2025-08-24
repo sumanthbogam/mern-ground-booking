@@ -31,6 +31,10 @@ const GroundCardUser = ({ name, img, id, location, price }) => {
         />
         <div className="p-4">
           <h2 className="text-lg font-semibold mb-2">{name}</h2>
+          <h2 className="text-lg mb-2">
+  <span className="font-semibold">Location:</span> {location}
+</h2>
+
 
           <div className="flex flex-col gap-2">
             <button

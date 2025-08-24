@@ -17,7 +17,9 @@ const AdminLogin = () => {
         email,password
       });
       alert(res.data.msg);
-      localStorage.setItem("token",res.data.token)
+      localStorage.setItem("token",res.data.token);
+       localStorage.setItem("adminId",res.data.id);
+       localStorage.setItem("email",res.data.email);
       navigate("/admin/addGround")
     }
   
