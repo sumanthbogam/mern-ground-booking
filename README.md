@@ -65,6 +65,43 @@ client/
 ├── package-lock.json
 └── vite.config.js
 
+---------------------------------------------------------------------
+
+### Backend (Node.js + Express + MongoDB)
+server/
+├── controllers/      
+│   ├── admin_controller.js
+│   ├── ground_controller.js
+│   ├── request_controller.js
+│   └── user_controller.js
+│
+├── middlewares/      
+│   ├── auth.js       
+│   └── multer.js     
+│
+├── models/           
+│   ├── admin.js
+│   ├── booking.js
+│   ├── ground.js
+│   ├── request.js
+│   └── userModel.js
+│
+├── routes/           
+│   ├── adminroute.js
+│   ├── groundroute.js
+│   ├── requestroute.js
+│   └── userRoute.js
+│
+├── uploads/           
+│   ├── 1754294983505.jpeg
+│   ├── 1754390857553.jpeg
+│   └── ...
+│
+├── config.js          
+├── test.js           
+└── server.js
+
+
 
 
 
