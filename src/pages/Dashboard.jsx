@@ -45,12 +45,9 @@ const Dashboard = () => {
   return (
     <div className='min-h-screen bg-yellow-100'>
         <header className="flex items-center justify-between p-4 bg-blue-100 shadow relative">
-  {/* Center title */}
   <h1 className="text-2xl font-bold absolute left-1/2 transform -translate-x-1/2">
     Ground Booking
   </h1>
-
-  {/* Right-side buttons */}
   <div className="ml-auto space-x-2">
     <button
       className="px-4 py-2 bg-yellow-500 text-white rounded cursor-pointer"
