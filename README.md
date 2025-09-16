@@ -14,7 +14,7 @@ Built with **MERN (MongoDB, Express, React, Node.js)** and styled with **Tailwin
 -  Player matching (connect with teammates)(still working on this)
 -  Booking system with available time slots
 
----
+--------------------------------------------------------------------------------------
 
 ## 🛠️ Tech Stack
 - **Frontend**: React + Vite + Tailwind CSS
@@ -23,9 +23,49 @@ Built with **MERN (MongoDB, Express, React, Node.js)** and styled with **Tailwin
 - **Auth**: JWT + bcrypt
 - **File uploads**: Multer
 - **Linting**: ESLint
+-----------------------------------------------------------------------------------------------
 
----
+## 📂 Project Structure
 
-## 📂 Project Structure (Frontend)
+### Frontend (React + Vite)
+client/
+├── public/               
+├── src/
+│   ├── admin/             
+│   │   ├── AddGround.jsx
+│   │   ├── AdminGrounds.jsx
+│   │   ├── AdminLogin.jsx
+│   │   └── AdminRegister.jsx
+│   │   └── EditGround.jsx
+│   │
+│   ├── api/               
+│   │   └── Axios.js
+│   │
+│   ├── components/         
+│   │   ├── GroundCard.jsx
+│   │   └── GroundCardUser.jsx
+│   │
+│   ├── pages/             
+│   │   └── (add your user pages here later if created)
+│   │
+│   ├── assets/             
+│   │   └── react.svg
+│   │
+│   ├── Protectedroute.jsx  
+│   ├── App.jsx           
+│   ├── main.jsx            
+│   ├── App.css
+│   ├── index.css
+│
+├── .gitignore
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+└── vite.config.js
+
+
+
 
 
