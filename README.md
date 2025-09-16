@@ -1,12 +1,31 @@
-# React + Vite
+# MERN Ground Booking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application to "book cricket grounds" and "connect with players".  
+Built with **MERN (MongoDB, Express, React, Node.js)** and styled with **Tailwind CSS**.
 
-Currently, two official plugins are available:
+-----------------------------------------------------------------------------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+-  User Authentication (Register / Login with JWT) also used bcrypt for secure passwords.
+-  Admin Authentication (Register / Login with JWT) also used bcrypt for secure passwords.
+-  Admins can add and manage grounds.
+-  Image upload for grounds (Multer).
+-  Search & filter grounds by name and location.
+-  Player matching (connect with teammates)(still working on this)
+-  Booking system with available time slots
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- **Frontend**: React + Vite + Tailwind CSS
+- **Backend**: Node.js + Express
+- **Database**: MongoDB (Mongoose)
+- **Auth**: JWT + bcrypt
+- **File uploads**: Multer
+- **Linting**: ESLint
+
+---
+
+## 📂 Project Structure (Frontend)
+
+
